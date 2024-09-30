@@ -1,8 +1,6 @@
 CREATE DATABASE AcervoBD
 use AcervoBD
 
-INSERT INTO aluno VALUES ('23659060876', 22202221, 'Lucas Yoshihiro Shiroma Malpartida', 'Lucas.Malpartida1', '111')
-
 CREATE TABLE aluno(
 	cpf 			CHAR(11),
 	ra				CHAR(11),
@@ -293,24 +291,5 @@ AS
 		SET @autorizar = 0
 	END
 
-DECLARE @email VARCHAR(100)
-DECLARE @nome VARCHAR(100) = 'Lucas Yoshihiro Shiroma'
-EXEC sp_criarEmail @nome, @email OUTPUT
-PRINT(@email)
-
-DECLARE @saida VARCHAR(100)
-DECLARE @cpf CHAR(11) = '60503978051'
-DECLARE @nome  VARCHAR(100) = 'Lucas'
-DECLARE @senha VARCHAR(100) = 'senhawe3'
-EXEC sp_inserirAluno @cpf, @nome, @senha, @saida OUTPUT
-SELECT @saida
 SELECT * FROM aluno
 SELECT * FROM exemplar
-
-DECLARE @autorizar BIT
-DECLARE @email VARCHAR(100)
-DECLARE @senha VARCHAR(100)
-SET @email = 'Ricardo.Silva'
-SET @senha = '11111111'
-EXEC sp_login @email, @senha, @autorizar OUTPUT
-PRINT(@autorizar)
