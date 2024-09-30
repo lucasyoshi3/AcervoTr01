@@ -1,6 +1,8 @@
-package repository;
+package com.fatec.Acervo.repository;
+import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -12,15 +14,14 @@ import com.fatec.Acervo.model.Exemplar;
 @Repository
 public interface ExemplarRepository extends CrudRepository<Exemplar, String>{
 	
-	Optional<Exemplar> findById(String codigo);
-	
-	List<Exemplar> findAll();
+	@Procedure(procedureName = "sp_verificarExemplar")
+	List<Exemplar> findByCodigo(@Param("codigo") String codigo);
 	
 	@Procedure(procedureName = "sp_inserirExemplar")
 	String inserirExemplar(@Param("codigo") String codigo, @Param("nome") String nome, @Param("qtdPaginas") int qtdPaginas);
 	
 	@Procedure(procedureName = "sp_atualizarNomeExemplar")
-	String atualizarNomeExemplar(@Param("codigo") String codigo, @Param("nome") String nome);
+	void atualizarNomeExemplar(@Param("codigo") String codigo, @Param("nome") String nome);
 	
 	@Procedure(procedureName = "sp_atualizarQtdPaginasExemplar")
 	void atualizarQtdPaginasExemplar(@Param("codigo") String codigo, @Param("qtdPaginas") int qtdPaginas);
