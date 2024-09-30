@@ -5,7 +5,9 @@
     </head>
     <body>
         <h1>Registro Aluno</h1>
-        <form action="#" th:action="@{/aluno}" th:object="${aluno}" method="post">
+        <h2><p th:text="${resposta}" style="color: black;"></p></h2>
+        
+        <form th:action="@{/aluno}" th:object="${aluno}" method="post">
             <table>
                 <tbody>
                 	<tr>

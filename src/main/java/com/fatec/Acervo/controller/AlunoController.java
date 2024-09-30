@@ -33,16 +33,16 @@ public class AlunoController {
 	
 	@PostMapping("/aluno")
 	public ModelAndView alunosCreate(@ModelAttribute("aluno")Aluno aluno, @RequestParam("acao") String acao) {
-		
+		String resposta=null;
 		if(acao.equals("gravar")) {
-			alunoRepository.inserirAluno(aluno.getCpf(), aluno.getNome(), aluno.getSenha());
+			resposta = alunoRepository.inserirAluno(aluno.getCpf(), aluno.getNome(), aluno.getSenha());
 		}else if(acao.equals("atualizar")) {
-			alunoRepository.atualizarAluno(aluno.getCpf(), aluno.getSenha());
+			resposta = alunoRepository.atualizarAluno(aluno.getCpf(), aluno.getSenha());
 		}
 		
 		ModelAndView mv = new ModelAndView("Aluno_form");
 		mv.addObject("aluno",new Aluno());
-		
+		mv.addObject("resposta", resposta);
 		return mv;
 	}
 }
